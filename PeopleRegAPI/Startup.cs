@@ -32,7 +32,7 @@ namespace PeopleRegAPI
             services.AddDbContext<MySQLContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("MySqlConnectionString")));
             services.AddControllers();
-
+            services.AddApiVersioning();
             // Dependency injection
             services.AddScoped<IPersonService, PersonService>();
         }

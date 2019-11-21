@@ -5,7 +5,8 @@ using PeopleRegAPI.Services;
 
 namespace PeopleRegAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1")]
+    [Route("api/[controller]/v{version:apiVersion}")]
     public class PersonController : Controller
     {
         private IPersonService _personService;
