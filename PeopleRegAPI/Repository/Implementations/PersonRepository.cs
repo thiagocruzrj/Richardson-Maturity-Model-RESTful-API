@@ -1,17 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using PeopleRegAPI.Model;
 using PeopleRegAPI.Model.context;
 
-namespace PeopleRegAPI.Services.Implementations
+namespace PeopleRegAPI.Repository.Implementations
 {
-    public class PersonService : IPersonService
+    public class PersonRepository : IPersonRepository
     {
         private MySQLContext _context;
 
-        public PersonService(MySQLContext context)
+        public PersonRepository(MySQLContext context)
         {
             _context = context;
         }
@@ -43,7 +42,6 @@ namespace PeopleRegAPI.Services.Implementations
                 throw ex;
             }
         }
-
         public List<Person> FindAll()
         {
             return _context.People.ToList();
@@ -69,8 +67,8 @@ namespace PeopleRegAPI.Services.Implementations
             }
             return person;
         }
-
-        private bool Exist(long id)
+        
+        public bool Exist(long? id)
         {
             return _context.People.Any(p => p.Id.Equals(id));
         }

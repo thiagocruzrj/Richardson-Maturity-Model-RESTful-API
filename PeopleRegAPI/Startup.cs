@@ -12,8 +12,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using PeopleRegAPI.Model.context;
-using PeopleRegAPI.Services;
-using PeopleRegAPI.Services.Implementations;
+using PeopleRegAPI.Business;
+using PeopleRegAPI.Business.Implementations;
+using PeopleRegAPI.Repository;
+using PeopleRegAPI.Repository.Implementations;
 
 namespace PeopleRegAPI
 {
@@ -34,7 +36,8 @@ namespace PeopleRegAPI
             services.AddControllers();
             services.AddApiVersioning();
             // Dependency injection
-            services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IPersonBusiness, PersonBusiness>();
+            services.AddScoped<IPersonRepository, PersonRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
