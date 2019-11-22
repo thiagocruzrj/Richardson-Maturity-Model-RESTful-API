@@ -15,6 +15,8 @@ using RestWithASPNETUdemy.Repository.Generic;
 using Microsoft.Net.Http.Headers;
 using Tapioca.HATEOAS;
 using LibraryApi.Hypermedia;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace RestWithASPNETUdemy
 {
@@ -72,7 +74,9 @@ namespace RestWithASPNETUdemy
             services.AddSingleton(filterOptions);
 
 			services.AddApiVersioning(option => option.ReportApiVersions = true);
-
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new Info { Title = "Richardson Maturity Model RESTful API", Version = "v1"});
+            });
             //Dependency Injection
             services.AddScoped<IPersonBusiness, PersonBusinessImpl>();
             services.AddScoped<IBookBusiness, BookBusinessImpl>();
@@ -88,6 +92,15 @@ namespace RestWithASPNETUdemy
         {
             loggerFactory.AddConsole(_configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
+            var option = new RewriteOptions();
+            option.AddRedirect("^$","swagger");
+            app.UseRewriter(option);
 
             app.UseMvc(routes =>{
                 routes.MapRoute(

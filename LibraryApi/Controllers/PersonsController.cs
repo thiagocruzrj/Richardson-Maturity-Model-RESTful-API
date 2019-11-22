@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using RestWithASPNETUdemy.Business;
 using RestWithASPNETUdemy.Data.VO;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using Tapioca.HATEOAS;
 
 namespace RestWithASPNETUdemy.Controllers
@@ -9,7 +11,6 @@ namespace RestWithASPNETUdemy.Controllers
     [Route("api/[controller]/v{version:apiVersion}")]
     public class PersonsController : Controller
     {
-
         private IPersonBusiness _personBusiness;
 
         public PersonsController(IPersonBusiness personBusiness)
@@ -18,30 +19,45 @@ namespace RestWithASPNETUdemy.Controllers
         }
 
         [HttpGet]
+        [SwaggerResponse((200), Type = typeof(List<PersonVO>))]
+        [SwaggerResponse(204)]
+        [SwaggerResponse(400)]
+        [SwaggerResponse(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
-            return Ok(_personBusiness.FindAll());
+            return new OkObjectResult(_personBusiness.FindAll());
         }
 
         [HttpGet("{id}")]
+        [SwaggerResponse((200), Type = typeof(PersonVO))]
+        [SwaggerResponse(204)]
+        [SwaggerResponse(400)]
+        [SwaggerResponse(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(long id)
         {
             var person = _personBusiness.FindById(id);
             if (person == null) return NotFound();
-            return Ok(person);
+            return new OkObjectResult(person);
         }
 
         [HttpPost]
+        [SwaggerResponse((201), Type = typeof(PersonVO))]
+        [SwaggerResponse(400)]
+        [SwaggerResponse(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Post([FromBody]PersonVO person)
         {
             if (person == null) return BadRequest();
-            return new  ObjectResult(_personBusiness.Create(person));
+            return new ObjectResult(_personBusiness.Create(person));
         }
 
         [HttpPut]
+        [SwaggerResponse((202), Type = typeof(PersonVO))]
+        [SwaggerResponse(400)]
+        [SwaggerResponse(401)]
+        [SwaggerResponse(404)]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Put([FromBody]PersonVO person)
         {
@@ -52,6 +68,10 @@ namespace RestWithASPNETUdemy.Controllers
         }
 
         [HttpDelete("{id}")]
+        [SwaggerResponse(204)]
+        [SwaggerResponse(400)]
+        [SwaggerResponse(401)]
+        [SwaggerResponse(404)]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Delete(int id)
         {
