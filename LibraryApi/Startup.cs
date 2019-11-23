@@ -23,6 +23,7 @@ using RestWithASPNETUdemy.Security.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using LibraryApi.Business;
 
 namespace RestWithASPNETUdemy
 {
@@ -131,6 +132,7 @@ namespace RestWithASPNETUdemy
             services.AddScoped<IPersonBusiness, PersonBusinessImpl>();
             services.AddScoped<IBookBusiness, BookBusinessImpl>();
             services.AddScoped<ILoginBusiness, LoginBusinessImpl>();
+            services.AddScoped<IFileBusiness, FileBusinessImpl>();
 
             services.AddScoped<IUserRepository, UserRepositoryImpl>();
             services.AddScoped<IPersonRepository, PersonRepositoryImpl>();
