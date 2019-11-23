@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Tapioca.HATEOAS;
+﻿using Tapioca.HATEOAS;
+using System.Collections.Generic;
 
 namespace RestWithASPNETUdemy.Data.VO
 {
@@ -10,6 +10,7 @@ namespace RestWithASPNETUdemy.Data.VO
         public string LastName { get; set; }
         public string Address { get; set; }
         public string Gender { get; set; }
+
         public List<HyperMediaLink> Links { get; set; } = new List<HyperMediaLink>();
     }
 }

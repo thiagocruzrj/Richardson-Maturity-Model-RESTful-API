@@ -1,4 +1,4 @@
-namespace LibraryApi.Security.Configuration
+﻿namespace RestWithASPNETUdemy.Security.Configuration
 {
     public class TokenConfiguration
     {

@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using RestWithASPNETUdemy.Model;
+﻿using RestWithASPNETUdemy.Model;
 using RestWithASPNETUdemy.Model.Context;
-using System;
 using System.Linq;
-using LibraryApi.Model;
 
 namespace RestWithASPNETUdemy.Business.Implementattions
 {

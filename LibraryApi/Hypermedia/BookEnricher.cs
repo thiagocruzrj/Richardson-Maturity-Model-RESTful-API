@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace RestWithASPNETUdemy.HyperMedia
 {
-    public class PersonEnricher : ObjectContentResponseEnricher<PersonVO>
+    public class BookEnricher : ObjectContentResponseEnricher<BookVO>
     {
-        protected override Task EnrichModel(PersonVO content, IUrlHelper urlHelper)
+        protected override Task EnrichModel(BookVO content, IUrlHelper urlHelper)
         {
-            var path = "api/persons/v1";
+            var path = "api/books/v1";
             var url = new { controller = path, id = content.Id };
 
             content.Links.Add(new HyperMediaLink()

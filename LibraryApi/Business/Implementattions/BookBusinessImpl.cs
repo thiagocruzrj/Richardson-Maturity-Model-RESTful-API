@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
-using LibraryApi.Data.Converters;
-using LibraryApi.Data.VO;
 using RestWithASPNETUdemy.Model;
 using RestWithASPNETUdemy.Repository.Generic;
+using RestWithASPNETUdemy.Data.Converters;
+using RestWithASPNETUdemy.Data.VO;
 
 namespace RestWithASPNETUdemy.Business.Implementattions
 {
     public class BookBusinessImpl : IBookBusiness
     {
         private IRepository<Book> _repository;
+
         private readonly BookConverter _converter;
 
         public BookBusinessImpl(IRepository<Book> repository)

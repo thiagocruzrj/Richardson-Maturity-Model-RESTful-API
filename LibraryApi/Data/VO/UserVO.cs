@@ -1,4 +1,6 @@
-namespace LibraryApi.Data.VO
+﻿using System.Runtime.Serialization;
+
+namespace RestWithASPNETUdemy.Model
 {
     public class UserVO
     {

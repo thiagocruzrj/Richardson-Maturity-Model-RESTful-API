@@ -1,9 +1,9 @@
-using LibraryApi.Data.VO;
+﻿using RestWithASPNETUdemy.Model;
 
-namespace LibraryApi.Business
+namespace RestWithASPNETUdemy.Business
 {
     public interface ILoginBusiness
     {
-        object FindByLogin(UserVO user);
+         object FindByLogin(UserVO user);
     }
 }

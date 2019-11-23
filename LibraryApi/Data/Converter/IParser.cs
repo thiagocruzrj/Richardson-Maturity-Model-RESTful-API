@@ -1,6 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace LibraryApi.Data.Converter
+namespace RestWithASPNETUdemy.Data.Converter
 {
     public interface IParser<O, D>
     {

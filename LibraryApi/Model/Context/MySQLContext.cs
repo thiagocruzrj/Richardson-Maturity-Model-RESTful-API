@@ -1,5 +1,4 @@
-﻿using LibraryApi.Model;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace RestWithASPNETUdemy.Model.Context
 {
