@@ -2,7 +2,7 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
-using LibraryApi.Model;
+using LibraryApi.Data.VO;
 using LibraryApi.Security.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using RestWithASPNETUdemy.Business;
@@ -22,7 +22,7 @@ namespace LibraryApi.Business.Implementattions
             _tokenConfiguration = tokenConfiguration;
         }
 
-        public object FindByLogin(User user)
+        public object FindByLogin(UserVO user)
         {
             bool credentialsIsValid = false;
             if (user != null && !string.IsNullOrWhiteSpace(user.Login))

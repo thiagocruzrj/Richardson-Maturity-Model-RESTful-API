@@ -1,4 +1,5 @@
 ﻿using LibraryApi.Business;
+using LibraryApi.Data.VO;
 using LibraryApi.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +19,7 @@ namespace RestWithASPNETUdemy.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public object Post([FromBody]User user)
+        public object Post([FromBody]UserVO user)
         {
             if (user == null) return BadRequest();
             return _loginBusiness.FindByLogin(user);

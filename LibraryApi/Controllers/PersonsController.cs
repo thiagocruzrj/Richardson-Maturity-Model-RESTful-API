@@ -57,6 +57,20 @@ namespace RestWithASPNETUdemy.Controllers
             return new ObjectResult(_personBusiness.Create(person));
         }
 
+        [HttpPatch]
+        [SwaggerResponse((202), Type = typeof(PersonVO))]
+        [SwaggerResponse(400)]
+        [SwaggerResponse(401)]
+        [Authorize("Bearer")]
+        [TypeFilter(typeof(HyperMediaFilter))]
+        public IActionResult Patch([FromBody]PersonVO person)
+        {
+            if (person == null) return BadRequest();
+            var updatedPerson = _personBusiness.Update(person);
+            if (updatedPerson == null) return BadRequest();
+            return new ObjectResult(updatedPerson);
+        }
+
         [HttpPut]
         [SwaggerResponse((202), Type = typeof(PersonVO))]
         [SwaggerResponse(400)]
